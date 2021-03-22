@@ -28,7 +28,7 @@ function runEnter() {
 
   console.log(filteredData)
 
-
+//referenced from https://www.youtube.com/watch?v=XmdOZ5NSqb8
 createTable(filteredData)
 
 function createTable(filteredData) {

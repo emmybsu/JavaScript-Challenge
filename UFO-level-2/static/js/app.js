@@ -56,7 +56,7 @@ function createTable(filteredData) {
     }
     var list = d3.select('.table table-striped');
 
-    list.html(' ');
+    list.html('');
     
     }
 };
