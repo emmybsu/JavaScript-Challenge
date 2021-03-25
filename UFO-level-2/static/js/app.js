@@ -4,7 +4,7 @@ var sightings = data;
 // select the button
 var button = d3.select('#filter-btn');
 // select the form 
-var form = d3.select('#filters');
+var form = d3.select('form');
 
 //create event handlers
 button.on('click', runEnter);
@@ -13,6 +13,9 @@ form.on('submit', runEnter);
 // complete the event handler function for the form
 function runEnter() {
 
+var list = d3.select('tbody');
+
+list.html('');
 
 // prevent the page from refreshing
   d3.event.preventDefault() 
@@ -21,20 +24,15 @@ function runEnter() {
 
   // Get the value property of the input element
   var inputValue = inputElement.property("value");
-  
-//   console.log(inputValue);
-//   console.log(people);
+
   var filteredData = sightings.filter(ufoSightings => ufoSightings.datetime === inputValue);
-
-  console.log(filteredData)
-
 
 
 //referenced from https://www.youtube.com/watch?v=XmdOZ5NSqb8
 createTable(filteredData)
 
 function createTable(filteredData) {
-    var table = document.getElementById('ufo-table')
+    var table = document.getElementById('table-body')
 
     for (var i = 0; i < filteredData.length; i++ ){
         var row = `<tr>
@@ -48,15 +46,9 @@ function createTable(filteredData) {
           
                    </tr>`
         table.innerHTML += row
-
-     //}
-  // Then, select the unordered list element by class name
-  //var list = d3.select(".table table-striped");
-
+        
     }
-    var list = d3.select('.table table-striped');
-
-    list.html('');
-    
+ 
+   
     }
 };
