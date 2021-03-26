@@ -21,12 +21,36 @@ list.html('');
   d3.event.preventDefault() 
   // Select the input element and get the raw HTML node
   var inputElement = d3.select("#datetime");
+  var inputCity = d3.select("#city");
+  var inputState = d3.select("#state");
+  var inputCountry = d3.select('#country');
+  var inputShape = d3.select('#shape')
 
   // Get the value property of the input element
   var inputValue = inputElement.property("value");
+  var inputCity = inputCity.property("value");
+  var inputState = inputState.property("value");
+  var inputCountry = inputCountry.property('value');
+  var inputShape = inputShape.property('value');
+
 
   var filteredData = sightings.filter(ufoSightings => ufoSightings.datetime === inputValue);
+  
+  if (inputCity) {
+    filteredData = filteredData.filter(ufoSightings => ufoSightings.city === inputCity);
+  };
 
+  if (inputState) {
+    filteredData = filteredData.filter(ufoSightings => ufoSightings.state === inputState);
+  };
+
+  if (inputCountry) {
+    filteredData = filteredData.filter(ufoSightings => ufoSightings.country === inputCountry);
+  };
+
+  if (inputShape) {
+    filteredData = filteredData.filter(ufoSightings => ufoSightings.shape === inputShape);
+  };
 
 //referenced from https://www.youtube.com/watch?v=XmdOZ5NSqb8
 createTable(filteredData)
