@@ -27,35 +27,35 @@ list.html('');
   var inputShape = d3.select('#shape')
 
   // Get the value property of the input element
-  var inputValue = inputElement.property("value");
-  var inputCity = inputCity.property("value");
-  var inputState = inputState.property("value");
-  var inputCountry = inputCountry.property('value');
-  var inputShape = inputShape.property('value');
+  var dateValue = inputElement.property("value");
+  var cityValue = inputCity.property("value");
+  var stateValue = inputState.property("value");
+  var countryValue = inputCountry.property('value');
+  var shapeValue = inputShape.property('value');
 
-
-  var filteredData = sightings.filter(ufoSightings => ufoSightings.datetime === inputValue);
   
-  if (inputCity) {
-    filteredData = filteredData.filter(ufoSightings => ufoSightings.city === inputCity);
+
+  if (dateValue) {
+    filteredData = sightings.filter(ufoSightings => ufoSightings.datetime === dateValue)
+  } else if (cityValue) {
+
+    filteredData = sightings.filter(ufoSightings => ufoSightings.city === cityValue);
+  } else if (stateValue) {
+    filteredData = sightings.filter(ufoSightings => ufoSightings.state === stateValue);
+  } else if (countryValue) {
+    filteredData = sightings.filter(ufoSightings => ufoSightings.country === countryValue);
+  } else if (shapeValue) {
+    filteredData = sightings.filter(ufoSightings => ufoSightings.shape === shapeValue);
   };
 
-  if (inputState) {
-    filteredData = filteredData.filter(ufoSightings => ufoSightings.state === inputState);
-  };
-
-  if (inputCountry) {
-    filteredData = filteredData.filter(ufoSightings => ufoSightings.country === inputCountry);
-  };
-
-  if (inputShape) {
-    filteredData = filteredData.filter(ufoSightings => ufoSightings.shape === inputShape);
-  };
+  
 
 //referenced from https://www.youtube.com/watch?v=XmdOZ5NSqb8
 createTable(filteredData)
 
 function createTable(filteredData) {
+    console.log("createTable") 
+    console.log(filteredData)
     var table = document.getElementById('table-body')
 
     for (var i = 0; i < filteredData.length; i++ ){
@@ -70,6 +70,7 @@ function createTable(filteredData) {
           
                    </tr>`
         table.innerHTML += row
+        console.log(row)
         
     }
  
